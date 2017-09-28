@@ -25,7 +25,7 @@ class RatingControl: UIStackView {
     }
     
     // Button Action
-    func ratingButtonTapped(button: UIButton){
+    @objc func ratingButtonTapped(button: UIButton){
         print("Button pressed")
     }
     
