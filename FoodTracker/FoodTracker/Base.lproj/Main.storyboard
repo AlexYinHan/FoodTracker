@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,11 +23,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qWp-lT-RLJ">
-                                <rect key="frame" x="16" y="40" width="343" height="96.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qWp-lT-RLJ">
+                                <rect key="frame" x="16" y="40" width="343" height="542.5"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7aI-vW-CeN">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="96.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7aI-vW-CeN">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="542.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meal Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9T8-li-BOj">
                                                 <rect key="frame" x="0.0" y="0.0" width="86.5" height="20.5"/>
@@ -47,6 +48,19 @@
                                                     <action selector="setDefaultLabelText:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GFP-rf-sVt"/>
                                                 </connections>
                                             </button>
+                                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="320" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="AAe-r9-zA5">
+                                                <rect key="frame" x="0.0" y="104.5" width="320" height="320"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="AAe-r9-zA5" secondAttribute="height" multiplier="1:1" id="dQZ-mp-B68"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="oUY-bR-j6p" appends="YES" id="qGO-hV-Qse"/>
+                                                </connections>
+                                            </imageView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PlU-bG-rmA" customClass="RatingControl" customModule="FoodTracker" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="432.5" width="200" height="110"/>
+                                            </stackView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="txQ-we-TfK" secondAttribute="trailing" id="qKC-xO-Py5"/>
@@ -65,11 +79,20 @@
                     <connections>
                         <outlet property="mealNameLabel" destination="9T8-li-BOj" id="Vll-WN-QXg"/>
                         <outlet property="nameTextField" destination="txQ-we-TfK" id="TxT-MU-iiR"/>
+                        <outlet property="photoImageView" destination="AAe-r9-zA5" id="67q-qa-B0V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="oUY-bR-j6p">
+                    <connections>
+                        <action selector="selectImageFromPhotoLibrary:" destination="BYZ-38-t0r" id="cjN-IW-Eqd"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="defaultPhoto" width="540" height="540"/>
+    </resources>
 </document>
