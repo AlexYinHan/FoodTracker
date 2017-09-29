@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MealViewController.swift
 //  FoodTracker
 //
 //  Created by apple on 2017/9/27.
@@ -8,11 +8,10 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     //MARK: Properties
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var mealNameLabel: UILabel!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var ratingControl: RatingControl!
     
@@ -34,7 +33,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
  
     func textFieldDidEndEditing(_ textField: UITextField) {
         //textFieldShouldReturn后调用此函数，可以获取用户输入的内容进行操作
-        mealNameLabel.text = textField.text
+        //mealNameLabel.text = textField.text
     }
     
     //MARK: UIImagePIckerControllerDelegate
