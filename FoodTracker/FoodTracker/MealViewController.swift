@@ -27,6 +27,18 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         
         // Handle the text field’s user input through delegate callbacks.
         nameTextField.delegate = self
+        
+        // Set up views if editing an existing Meal.
+        if let meal = meal {
+            navigationItem.title = meal.name
+            nameTextField.text = meal.name
+            photoImageView.image = meal.photo
+            ratingControl.rating = meal.rating
+        }
+        
+        // Enable the Save button only if the text field has a valid name
+        updateSaveButtonState()
+        
     }
 
     //MARK: UITextFieldDelegate
@@ -40,7 +52,16 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
  
     func textFieldDidEndEditing(_ textField: UITextField) {
         //textFieldShouldReturn后调用此函数，可以获取用户输入的内容进行操作
-        //mealNameLabel.text = textField.text
+        //mealNameLabel.text = textField.text\
+        
+        updateSaveButtonState()
+        navigationItem.title = textField.text
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        // 当编辑或者键盘显示在屏幕上时，调用这个函数
+        // Disable the save button while editing
+        saveButton.isEnabled = false
     }
     
     //MARK: UIImagePIckerControllerDelegate
@@ -64,7 +85,30 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         
     }
     
-    //MARK:
+    //MARK: Navigation
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
+        // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
+        let isPresentingInAddMealMode = presentingViewController is UINavigationController
+        
+        if isPresentingInAddMealMode {
+            dismiss(animated: true, completion: nil)
+            /**
+             * Learning Notes:
+             * func dismiss(animated flag: Bool, completion: (() -> Void)? = nil)
+             * flag
+             Pass true to animate the transition.
+             * completion
+             The block to execute after the view controller is dismissed. This block has no return value and takes no parameters. You may specify nil for this parameter.
+             */
+        }
+        else if let owningNavigationController = navigationController {
+            owningNavigationController.popViewController(animated: true)
+        }
+        else {
+            fatalError("The MealViewController is not inside a navigation controller.")
+        }
+    }
+    
     // This method lets you configure a view controller before it's presented.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         
@@ -104,6 +148,13 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         // Make sure ViewController is notified when the user picks an image.
         imagePickerController.delegate = self
         present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    //MARK: Private Methods
+    private func updateSaveButtonState() {
+        // Disable the Save button if the text field is empty.
+        let text = nameTextField.text ?? ""
+        saveButton.isEnabled = !text.isEmpty
     }
 }
 
