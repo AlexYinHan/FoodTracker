@@ -3,3 +3,5 @@
     [Start Developing iOS Apps(Swift)](https://developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift/index.html#//apple_ref/doc/uid/TP40015214-CH2-SW1)<br />
     用于个人学习记录<br />
     在设备上白屏的解决方法：product -> clean. [stackoverflow-abort with payload](https://stackoverflow.com/questions/41549131/dyld-abort-with-payload-error-on-iphone-5s-device)<br />
+    如果有警告："All interface orientations must be supported unless the app requires full screen." [参考这个问题](https://stackoverflow.com/questions/31141806/xcode-7-beta-warnings-interface-orientations-and-launch-storyboard)
+
