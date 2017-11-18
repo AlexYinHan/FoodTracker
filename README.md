@@ -17,3 +17,10 @@ iOS上：[Energy Efficiency Guide for iOS Apps - Prioritize Work with Quality of
 所以，自动加的这个check里面，应该就只是一些负责输出信息的代码，这个操作还是会进行，程序也不会崩溃，只是交互不太及时。<br>
 运行一个macOS app，只要有动态库文件/Applications/Xcode.app/Contents/Developer/usr/lib/libMainThreadChecker.dylib就行，不需要重新编译程序。<br>
 占用资源很少，所以Xcode上一般自动开启主线程检查。
+3. **Operation**<br>
+ - **NSInvocationOperation & BlockOperation**<br>
+Operation是一个抽象类，不能直接使用。<br>
+NSInvocationOperation使用 selector 回调并可以传递参数进去，BlockInvocation是使用 Block。如果想要使用多线程异步操作，则应该选择   NSBlockOperation。<br>
+事实上，NSInvocationOperation在swift中是不可用的。<br>
+ - **OperationQueue**<br>
+被cancel的operation，依赖于它的所有operation都会被cancel；如果被cancel的这个operation已经开始了，则会继续运行下去，但是‘isCancelled’还是会变为true。
