@@ -27,3 +27,7 @@ NSInvocationOperation使用 selector 回调并可以传递参数进去，BlockIn
  - **OperationQueue**<br>
 被cancel的operation，依赖于它的所有operation都会被cancel；如果被cancel的这个operation已经开始了，则会继续运行下去，但是‘isCancelled’还是会变为true。
 ***
+4. **NavigationBar不显示**<br>
+如果当前View的NavigationController没有入口，则编译器会警告，并且对应的NavigationBar就（可能）不会显示。<br>
+至少要有一个segue指向NavigationController，可以通过它的topViewController来访问对应的view。
+***
