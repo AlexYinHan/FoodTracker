@@ -31,3 +31,17 @@ NSInvocationOperation使用 selector 回调并可以传递参数进去，BlockIn
 如果当前View的NavigationController没有入口，则编译器会警告，并且对应的NavigationBar就（可能）不会显示。<br>
 至少要有一个segue指向NavigationController，可以通过它的topViewController来访问对应的view。
 ***
+5. **performSegueWithIdentifier 不跳转**<br>
+[iOS 开发中手动 performSegueWithIdentifier 不生效的解决办法](https://lvwenhan.com/ios/424.html)
+> iOS 视图控制对象的生命周期如下：<br>
+init－初始化程序<br>
+viewDidLoad－加载视图<br>
+viewWillAppear－UIViewController对象的视图即将加入窗口时调用；<br>
+viewDidApper－UIViewController对象的视图已经加入到窗口时调用；<br>
+viewWillDisappear－UIViewController对象的视图即将消失、被覆盖或是隐藏时调用；<br>
+viewDidDisappear－UIViewController对象的视图已经消失、被覆盖或是隐藏时调用；<br>
+viewVillUnload－当内存过低时，需要释放一些不需要使用的视图时，即将释放时调用；<br>
+viewDidUnload－当内存过低，释放一些不需要的视图时调用。<br>
+
+如果在 viewDidLoad 时就启动 Segue 的话，依然会被后来填充的视图覆盖，要在视图载入完成以后的 viewDidAppear 中启动 Segue.
+***
