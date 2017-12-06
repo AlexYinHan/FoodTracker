@@ -45,3 +45,6 @@ viewDidUnload－当内存过低，释放一些不需要的视图时调用。<br>
 
 如果在 viewDidLoad 时就启动 Segue 的话，依然会被后来填充的视图覆盖，要在视图载入完成以后的 viewDidAppear 中启动 Segue.
 ***
+6. **Any类型**<br>
+待解决<br>
+***
