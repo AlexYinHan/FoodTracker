@@ -48,3 +48,13 @@ viewDidUnload－当内存过低，释放一些不需要的视图时调用。<br>
 6. **Any类型**<br>
 待解决<br>
 ***
+7. **json数据**<br>
+未解决<br>
+将字典类型转为json类型，作为post的参数<br>
+发送{roomid:1001}<br>
+变成{'{\n "roomId" : 1001\n}': ''}<br>
+***
+8. **OperationQueue中的operation无法取消**
+其实该operation的isCancelled已经为true，但是不知道什么原因还在运行。<br>
+在取消后手动记录下取消状态，在operation中检查这个值，手动终止该任务。<br>
+***
